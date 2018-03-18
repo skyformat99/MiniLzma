@@ -14,4 +14,32 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Common\7zTypes.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Compiler.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Precomp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LzmaDec\Lzma2Dec.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LzmaDec\LzmaDec.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ExportOptions.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="LzmaDec\LzmaDec.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LzmaDec\Lzma2Dec.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>

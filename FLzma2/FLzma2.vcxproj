@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{E8138189-BD15-437C-81E4-BB11076E073A}</ProjectGuid>
-    <RootNamespace>MiniLzma</RootNamespace>
+    <ProjectGuid>{CDE76441-5AE1-4F16-A30B-0AC797E47BA2}</ProjectGuid>
+    <RootNamespace>FLzma2</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -70,42 +70,43 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-    </ClCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
-      <BufferSecurityCheck>false</BufferSecurityCheck>
-    </ClCompile>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\msvcrt\lib\crt\i386;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>false</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>Fast</FloatingPointModel>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>false</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>Fast</FloatingPointModel>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -113,9 +114,10 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -124,16 +126,47 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Common\7zTypes.h" />
-    <ClInclude Include="Common\Compiler.h" />
-    <ClInclude Include="Common\Precomp.h" />
-    <ClInclude Include="ExportOptions.h" />
-    <ClInclude Include="LzmaDec\Lzma2Dec.h" />
-    <ClInclude Include="LzmaDec\LzmaDec.h" />
+    <ClCompile Include="error_private.c" />
+    <ClCompile Include="fl2pool.c" />
+    <ClCompile Include="fl2_common.c" />
+    <ClCompile Include="fl2_compress.c" />
+    <ClCompile Include="fl2_decompress.c" />
+    <ClCompile Include="lzma2_dec.c" />
+    <ClCompile Include="lzma2_enc.c" />
+    <ClCompile Include="radix_bitpack.c" />
+    <ClCompile Include="radix_mf.c" />
+    <ClCompile Include="radix_struct.c" />
+    <ClCompile Include="range_enc.c" />
+    <ClCompile Include="threading.c" />
+    <ClCompile Include="xxhash.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LzmaDec\Lzma2Dec.c" />
-    <ClCompile Include="LzmaDec\LzmaDec.c" />
+    <ClInclude Include="atomic.h" />
+    <ClInclude Include="compiler.h" />
+    <ClInclude Include="count.h" />
+    <ClInclude Include="data_block.h" />
+    <ClInclude Include="error_private.h" />
+    <ClInclude Include="export_opt.h" />
+    <ClInclude Include="fast-lzma2.h" />
+    <ClInclude Include="fastpos_table.h" />
+    <ClInclude Include="fl2pool.h" />
+    <ClInclude Include="fl2_compress_internal.h" />
+    <ClInclude Include="fl2_errors.h" />
+    <ClInclude Include="fl2_internal.h" />
+    <ClInclude Include="lzma2_dec.h" />
+    <ClInclude Include="lzma2_enc.h" />
+    <ClInclude Include="mem.h" />
+    <ClInclude Include="platform.h" />
+    <ClInclude Include="radix_engine.h" />
+    <ClInclude Include="radix_internal.h" />
+    <ClInclude Include="radix_mf.h" />
+    <ClInclude Include="range_enc.h" />
+    <ClInclude Include="threading.h" />
+    <ClInclude Include="util.h" />
+    <ClInclude Include="xxhash.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LzmaDecOpt.asm" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
